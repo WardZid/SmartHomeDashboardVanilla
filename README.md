@@ -10,11 +10,11 @@
 <div align="center">
   <a href="https://github.com/WardZid/SmartHomeDashboard">
   </a>
-  <h3 align="center">SmartHomeDashboard</h3>
+  <h3 align="center">Smart Home Dashboard</h3>
   <p align="center">
     A dashboard webapp for controlling and monitoring smart home devices. Including features for device integration, automated routines, and energy usage tracking.
     <br />
-    <a href="https://github.com/WardZid/Smart Home Dashboard"><strong>Explore the docs »</strong></a>
+    <a href="https://github.com/WardZid/SmartHomeDashboard"><strong>Explore the docs »</strong></a>
     <br />
     <br />
     <a href="https://github.com/WardZid/SmartHomeDashboard">View Demo</a>
