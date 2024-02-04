@@ -1,3 +1,3 @@
 function signIn() {
-    window.location.href = '/Vanilla/components/homepage/homepage.html';
+    window.location.href = '../homepage/homepage.html';
 }

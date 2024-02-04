@@ -7,7 +7,7 @@ html, body {
 }
 
 body {
-    background-image: url('/Vanilla/resources/bg-log-in.jpg');
+    background-image: url('../../resources/bg-log-in.jpg');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;

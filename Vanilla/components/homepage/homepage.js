@@ -1,3 +1,3 @@
 function signOut() {
-    window.location.href = '/Vanilla/components/log-in/log-in.html';
+    window.location.href = '../log-in/log-in.html';
 }
