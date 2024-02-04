@@ -44,9 +44,22 @@
                     <source src="/Vanilla/resources/vid-frontdoor-camera.mp4" type="video/mp4">
                     Your browser does not support the video tag.
                 </video>
+                <div class="mute-button" onclick="toggleMute()" style="cursor: pointer;">
+                    🔇 Mute
+                </div>
                 <script>
                     var video = document.getElementById("front-door-cam");
                     video.play();
+                    var muteButton = document.querySelector(".mute-button");
+                    function toggleMute() {
+                        if (video.muted) {
+                            video.muted = false;
+                            muteButton.textContent = "🔊 Unmute";
+                        } else {
+                            video.muted = true;
+                            muteButton.textContent = "🔇 Mute";
+                        }
+                    }
                 </script>
             </div>
         </div>
