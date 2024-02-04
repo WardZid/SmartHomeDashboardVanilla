@@ -103,7 +103,7 @@ button{
     flex-direction: row;
     justify-content: flex-start;
     flex-wrap: wrap;
-    align-items: center;
+    align-items: flex-start;
     align-content: flex-start;
     gap: 10px;
     padding: 1%;
@@ -131,3 +131,8 @@ button{
   .hover-button:hover {
     background-color: #2980b9;
   }
+
+  video {
+    width: 100%; /* Make the video fill the container width */
+    height: auto; /* Maintain the aspect ratio */
+}

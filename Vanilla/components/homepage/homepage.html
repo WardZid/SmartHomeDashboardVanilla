@@ -38,6 +38,17 @@
                 <h3>Thermostat</h3>
                 <h4>22 C˚</h4>
             </div>
+            <div class="widget" style="width: 400px; height: fit-content;">
+                <h3>Front Door Camera</h3>
+                <video id="front-door-cam" width="640" height="360" loop>
+                    <source src="/Vanilla/resources/vid-frontdoor-camera.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+                <script>
+                    var video = document.getElementById("front-door-cam");
+                    video.play();
+                </script>
+            </div>
         </div>
     </div>
     <a href="#" class="hover-button">Hover Me</a>
