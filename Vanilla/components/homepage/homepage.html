@@ -5,10 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/x-icon" href="../../resources/icon-smart-home.png">
     <title>Smart Home Dashboard</title>
-    <link rel="stylesheet" href="homepage.css">
+    <link rel="stylesheet" href="../../../build/homepage.css">
     <script src="homepage.js"></script>
 </head>
-<body>
+<body style="background-image: url('../../resources/bg-homepage.jpg');">
 
     <div class="main">
         <div class="side-menu">
@@ -22,7 +22,15 @@
                     <button>kitchen</button>
                     <button>Living Room</button>
                     <button>Cameras</button>
-                    <button id="new-room">+</button>
+                    <button id="new-room"
+                            type="button"
+                            class="inline-block rounded bg-primary px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#3b71ca] transition duration-150 ease-in-out hover:bg-primary-600 hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:bg-primary-600 focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:outline-none focus:ring-0 active:bg-primary-700 active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] dark:shadow-[0_4px_9px_-4px_rgba(59,113,202,0.5)] dark:hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)]"
+                            data-te-toggle="modal"
+                            data-te-target="#exampleModalCenter"
+                            data-te-ripple-init
+                            data-te-ripple-color="light">
+                        +
+                    </button>
                 </div>
             </div> 
             <div class="bottom">
@@ -41,30 +49,21 @@
             </div>
             <div class="widget" style="width: 400px; height: fit-content;">
                 <h3>Front Door Camera</h3>
-                <video id="front-door-cam" width="640" height="360" loop>
+                <video id="front-door-cam" width="640" height="360" loop muted autoplay>
                     <source src="../../resources/vid-frontdoor-camera.mp4" type="video/mp4">
                     Your browser does not support the video tag.
                 </video>
                 <div class="mute-button" onclick="toggleMute()" style="cursor: pointer;">
                     🔇 Mute
                 </div>
-                <script>
-                    var video = document.getElementById("front-door-cam");
-                    video.play();
-                    var muteButton = document.querySelector(".mute-button");
-                    function toggleMute() {
-                        if (video.muted) {
-                            video.muted = false;
-                            muteButton.textContent = "🔊 Unmute";
-                        } else {
-                            video.muted = true;
-                            muteButton.textContent = "🔇 Mute";
-                        }
-                    }
-                </script>
+            </div>
+            
+            <div class="border-r-8 hover:bg-slate-600" style="width: 100px; height: 100px;">
+                <h3>Thermostat</h3>
+                <h4>22 C˚</h4>
             </div>
         </div>
     </div>
-    <a href="#" class="hover-button">Hover Me</a>
+    
 </body>
 </html>
