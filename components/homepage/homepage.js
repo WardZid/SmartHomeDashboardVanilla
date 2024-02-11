@@ -1,6 +1,10 @@
 
-var vidFrontDoor = document.getElementById("front-door-cam");
-var muteButton = document.querySelector(".mute-button");
+const vidFrontDoor = document.getElementById("front-door-cam");
+const muteButton = document.querySelector(".mute-button");
+const newRoomDialog = document.getElementById("new-room-dialog");
+const dialogOverlay = document.getElementById('overlay');
+
+
 
 function signOut() {
     window.location.href = '../log-in/log-in.html';
@@ -17,3 +21,22 @@ function toggleMute() {
         muteButton.textContent = "🔇 Mute";
     }
 }
+
+function openNewRoomDialog(){
+    dialogOverlay.style.display = 'block';
+    newRoomDialog.style.display = 'block';
+}
+
+function closeNewRoomDialog(){
+    dialogOverlay.style.display = 'none';
+    newRoomDialog.style.display = 'none';
+}
+
+function submitNewRoom(){
+    const roomNameInput = document.getElementById('room-name-input');
+    const userInput = roomNameInput.value;
+            // Do something with the user input, for example, display it
+    alert('You entered: ' + userInput);
+    closeNewRoomDialog();
+}
+
