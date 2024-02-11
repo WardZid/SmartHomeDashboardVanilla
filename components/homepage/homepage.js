@@ -35,8 +35,10 @@ function closeNewRoomDialog(){
 function submitNewRoom(){
     const roomNameInput = document.getElementById('room-name-input');
     const userInput = roomNameInput.value;
-            // Do something with the user input, for example, display it
+    
     alert('You entered: ' + userInput);
+
+    roomNameInput.value = "";
     closeNewRoomDialog();
 }
 
