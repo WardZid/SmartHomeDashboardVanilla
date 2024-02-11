@@ -117,7 +117,11 @@ button{
     box-shadow: 0 0 10px rgba(0, 0, 0, 5);
     user-select: none;
 }
-
+.floating-btn {
+    position: absolute;
+    bottom: 4rem;
+    right: 4rem;
+}
 .hover-button {
     display: inline-block;
     padding: 10px 20px;
@@ -154,7 +158,8 @@ button{
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    background-color: white;
+    background-color: #EEEEEE;
+    opacity: 0.97;
     padding: 20px;
     border-radius: 8px;
     z-index: 1001;

@@ -22,7 +22,7 @@
                     <button>kitchen</button>
                     <button>Living Room</button>
                     <button>Cameras</button>
-                    <button id="new-room" onclick="openNewRoomDialog()">+</button>
+                    <button id="new-room" onclick="openDialog('new-room-dialog')">+</button>
                 </div>
             </div> 
             <div class="bottom">
@@ -31,9 +31,10 @@
             </div>
         </div>
         <div class="widget-grid">
-            <div class="widget" style="width: 200px; height: 100px;">
-                <h2>15:40 ☁︎  ⁺₊ 8 C˚</h2>
-                <h5>Wednesday, 31st January 2024</h5>
+            <div class="widget" style="width: fit-content; height: fit-content;">
+                <h2 id="time-header">00:00</h2>
+                <h2>☁︎  ⁺₊ 8 C˚</h2>
+                <h5 id="date-header">Wednesday, 31st January 2024</h5>
             </div>
             <div class="widget" style="width: 100px; height: 100px;">
                 <h3>Thermostat</h3>
@@ -50,18 +51,36 @@
                 </div>
             </div>
         </div>
+        <button onclick="openDialog('new-widget-dialog')" id="floatingBtn" class="floating-btn bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full shadow-lg">+</button>
     </div>
 
 
     <div id="overlay" class="overlay"></div>
+
     <div id="new-room-dialog" class="dialog">
         <h2 class="text-lg font-semibold mb-4">Name of new room or category:</h2>
         <input type="text" id="room-name-input" class="border rounded px-3 py-2 mb-2">
-        <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"  onclick="submitNewRoom()">Submit</button>
+        <button onclick="submitNewRoom()" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" >Submit</button>
     </div>
 
-
-
+    <div id="new-widget-dialog" class="dialog bg-opacity-40">
+        <h2 class="text-lg font-semibold mb-4">Choose a new widget</h2>
+        <div class="widget-grid p-3">
+            <div class="widget" style="width: fit-content; height: 100px;">
+                <h2>15:40 ☁︎  ⁺₊ 8 C˚</h2>
+                <h5>Wednesday, 31st January 2024</h5>
+            </div>
+            <div class="widget" style="width: fit-content; height: 100px;">
+                <h3>Thermostat Widget</h3>
+                <h4>22 C˚</h4>
+            </div>
+            <div class="widget" style="width: 300 ;height: 300px;">
+                <h3>Camera Widget</h3>
+                <img src="../../resources/gif-security-camera-widget.gif" alt="Security Camera" style="width:300px;height: fit-content;" class="">
+            </div>
+        </div>
+        <button onclick="submitNewWidget()" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded float-right" >Add</button>
+    </div>
 
     <script src="homepage.js"></script>
 </body>

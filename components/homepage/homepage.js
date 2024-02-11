@@ -1,13 +1,26 @@
 
 const vidFrontDoor = document.getElementById("front-door-cam");
 const muteButton = document.querySelector(".mute-button");
-const newRoomDialog = document.getElementById("new-room-dialog");
 const dialogOverlay = document.getElementById('overlay');
 
 
 
 function signOut() {
     window.location.href = '../log-in/log-in.html';
+}
+
+function startClock(){
+    setInterval(updateClock, 1000);
+}
+function updateClock(){
+    const timeHeader = document.getElementById("time-header");
+    const dateHeader = document.getElementById("date-header");
+    const now = new Date(Date.now());
+    
+    timeHeader.textContent = now.toLocaleTimeString();
+
+    const options = { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' };
+    dateHeader.textContent = now.toLocaleDateString('en-US', options);
 }
 function togglePause() {
     vidFrontDoor.paused = !vidFrontDoor.paused;
@@ -22,14 +35,16 @@ function toggleMute() {
     }
 }
 
-function openNewRoomDialog(){
+function openDialog(id){
+    const dialog = document.getElementById(id);
+    dialog.style.display = 'block';
     dialogOverlay.style.display = 'block';
-    newRoomDialog.style.display = 'block';
 }
 
-function closeNewRoomDialog(){
+function closeDialog(id){
+    const dialog = document.getElementById(id);
+    dialog.style.display = 'none';
     dialogOverlay.style.display = 'none';
-    newRoomDialog.style.display = 'none';
 }
 
 function submitNewRoom(){
@@ -39,6 +54,11 @@ function submitNewRoom(){
     alert('You entered: ' + userInput);
 
     roomNameInput.value = "";
-    closeNewRoomDialog();
+    closeDialog('new-room-dialog');
 }
 
+function submitNewWidget(){
+    closeDialog('new-widget-dialog');
+}
+
+startClock();
