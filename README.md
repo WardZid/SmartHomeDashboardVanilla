@@ -25,7 +25,7 @@
   </p>
 </div>
 
-
+<!--
 ### Built With
 
 
@@ -33,15 +33,16 @@
 * [![Bootstrap][Bootstrap.com]][Bootstrap-url]
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
+--->
 
 <!-- ROADMAP -->
 ## Roadmap
 
-- [ ] Create a main page
-- [ ] Add a side menu
-- [ ] Add the ability to add rooms (each room has a menu button)
-- [ ] Add basic widget for each device
-- [ ] Add the capability to add widgets to to page 
+- [x] Create a main page
+- [x] Add a side menu
+- [x] Add the ability to add rooms (each room has a menu button)
+- [x] Add basic widget for each device
+- [x] Add the capability to add widgets to to page 
 - [ ] Add support for widget organization
 - [ ] Add support for widget dragging
 - [ ] Add a device Pop-up Dialog to control each device
@@ -50,7 +51,7 @@
     - [ ] Home Modem widget
     - [ ] Smart Fridge widget
     - [ ] Smart Lights widget
-    - [ ] Security Camera widget
+    - [x] Security Camera widget
     - [ ] Doorbell Camera widget
 
 See the [open issues](https://github.com/WardZid/SmartHomeDashboard/issues) for a full list of proposed features (and known issues).
