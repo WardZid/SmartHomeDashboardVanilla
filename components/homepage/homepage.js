@@ -47,6 +47,15 @@ function closeDialog(id){
     dialogOverlay.style.display = 'none';
 }
 
+function closeAllDialogs(){
+    var dialogs = document.getElementsByClassName("dialog");
+    for (var i = 0; i < dialogs.length; i++) {
+        var element = dialogs[i];
+        element.style.display = 'none';
+    }
+    dialogOverlay.style.display = 'none';
+}
+
 function submitNewRoom(){
     const roomNameInput = document.getElementById('room-name-input');
     const userInput = roomNameInput.value;
