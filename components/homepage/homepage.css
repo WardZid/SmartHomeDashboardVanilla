@@ -119,8 +119,10 @@ button{
 }
 .floating-btn {
     position: absolute;
-    bottom: 4rem;
-    right: 4rem;
+    /* top: calc(100% - 50px);
+    left: calc(100% - 50px); */
+    bottom: 50px;
+    right: 50px;
 }
 .hover-button {
     display: inline-block;
@@ -157,6 +159,8 @@ button{
     position: fixed;
     top: 50%;
     left: 50%;
+    max-height: 90%;
+    max-width: 90%;
     transform: translate(-50%, -50%);
     background-color: #EEEEEE;
     opacity: 0.97;
