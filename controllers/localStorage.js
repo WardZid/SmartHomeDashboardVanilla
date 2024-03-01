@@ -22,6 +22,16 @@ export function getCookie(name) {
   }
   return "";
 }
+function clearAllCookies() {
+  const cookies = document.cookie.split(";");
+
+  for (let i = 0; i < cookies.length; i++) {
+    const cookie = cookies[i];
+    const eqPos = cookie.indexOf("=");
+    const name = eqPos > -1 ? cookie.substr(0, eqPos) : cookie;
+    document.cookie = `${name}=;expires=Thu, 01 Jan 1970 00:00:00 GMT;path=/;SameSite=Strict;`;
+  }
+}
 
 export function setAccessToken(accessToken, expiry) {
   setCookie("accessToken", accessToken, expiry);
@@ -41,4 +51,41 @@ export function getRefreshToken() {
 }
 export function getUserID() {
   return getCookie("userID");
+}
+
+
+export function setUserInfoToSessionStorage(userInfo){
+  sessionStorage.setItem('userInfo', JSON.stringify(userInfo));
+}
+export function getUserInfoFromSessionStorage(){
+  const userInfoString = sessionStorage.getItem('userInfo');
+  return JSON.parse(userInfoString);
+}
+
+export function clear(){
+  sessionStorage.clear();
+  clearAllCookies();
+}
+
+
+
+export function isCookieExpired(cookieName) {
+  const cookieValue = getCookie(cookieName);
+  if (!cookieValue) {
+    // Cookie doesn't exist
+    return true;
+  }
+
+  const cookiePairs = cookieValue.split(';');
+  for (let i = 0; i < cookiePairs.length; i++) {
+    const pair = cookiePairs[i].trim().split('=');
+    if (pair[0] === 'expires') {
+      const expirationDate = new Date(pair[1]);
+      const currentDate = new Date();
+      return expirationDate < currentDate;
+    }
+  }
+
+  // If there's no 'expires' attribute, the cookie doesn't have an expiration date
+  return false;
 }

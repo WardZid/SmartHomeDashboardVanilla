@@ -1,3 +1,6 @@
+import * as dbAPI from "../../controllers/databaseAPI.js";
+import * as lsAPI from "../../controllers/localStorage.js";
+import * as user from "../../models/user.js";
 
 const lblFullName = document.getElementById("lblFullName");
 const vidFrontDoor = document.getElementById("front-door-cam");
@@ -27,11 +30,19 @@ btnSubmitNewWidget.addEventListener("click", submitNewWidget);
 //***********************************8EVENT LISTENERS - END
 
 function signOut() {
+  lsAPI.clear();
   window.location.href = "../log-in/log-in.html";
 }
 
-function loadPage(){
-
+function loadPage() {
+  user
+    .getUserInfo()
+    .then((userInfo) => {
+        lblFullName.textContent = userInfo.first_name + " " + userInfo.last_name;
+    })
+    .catch((error) => {
+      console.error("Error:", error);
+    });
 }
 
 function startClock() {

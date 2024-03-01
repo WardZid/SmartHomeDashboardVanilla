@@ -1,4 +1,5 @@
-import * as dbAPI from "../../databaseAPI.js";
+import * as dbAPI from "../../controllers/databaseAPI.js";
+import * as user from "../../models/user.js";
 
 //element definitions
 const btnSignIn = document.getElementById("btnSignIn");
@@ -59,6 +60,8 @@ function isValidInput(inputStr) {
   return inputStr != null && inputStr != "";
 }
 
-function isValidCredentials(user, pass) {
-  return dbAPI.login(user, pass);
+
+//skip login if user is still in session
+if(user.isLoggedIn()){
+  window.location.href = "../homepage/homepage.html";
 }
