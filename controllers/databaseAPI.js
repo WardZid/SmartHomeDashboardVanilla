@@ -66,14 +66,6 @@ function buildRequest(collectionName, additionalData) {
 
 export async function fetchUserInfo() {
   const userID = lsAPI.getUserID();
-  // const requestData = {
-  //   collection: "users",
-  //   database: "SmartHomeDatabase",
-  //   dataSource: "Cluster0",
-  //   filter: {
-  //     _id: { $oid: userID },
-  //   },
-  // };
   const requestData = {
     filter: {
       _id: { $oid: userID },
