@@ -14,7 +14,7 @@
         <div class="side-menu">
             <div class="profile">
                 <img class="profile-picture" src="../../resources/pfp-placeholder.jpg">
-                <div class="user-name">John Doe</div>
+                <div id="lblFullName" class="user-name">John Doe</div>
                 
             </div>
             <div class="category-list">
@@ -22,12 +22,12 @@
                     <button>kitchen</button>
                     <button>Living Room</button>
                     <button>Cameras</button>
-                    <button id="new-room" onclick="openDialog('new-room-dialog')">+</button>
+                    <button id="btnNewRoom">+</button>
                 </div>
             </div> 
             <div class="bottom">
                 <button>Settings</button>
-                <button onclick="signOut()">Sign Out</button>
+                <button id="btnSignOut">Sign Out</button>
             </div>
         </div>
         <div class="widget-grid">
@@ -46,22 +46,22 @@
                     <source src="../../resources/vid-frontdoor-camera.mp4" type="video/mp4">
                     Your browser does not support the video tag.
                 </video>
-                <div class="mute-button" onclick="toggleMute()" style="cursor: pointer;">
+                <div id="btnToggleMute" class="mute-button"  style="cursor: pointer;">
                     🔇 Mute
                 </div>
             </div>
         </div>
-        <button onclick="openDialog('new-widget-dialog')" id="floatingBtn" class="floating-btn bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full shadow-lg">+</button>
+        <button id="btnNewWidgetDialog" class="floating-btn bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full shadow-lg">+</button>
     </div>
 
 
     
-    <div id="overlay" onclick="closeAllDialogs()"  class="overlay"></div>
+    <div id="overlay"  class="overlay"></div>
 
     <div id="new-room-dialog" class="dialog">
         <h2 class="text-lg font-semibold mb-4">Name of new room or category:</h2>
         <input type="text" id="room-name-input" class="border rounded px-3 py-2 mb-2">
-        <button onclick="submitNewRoom()" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" >Submit</button>
+        <button id="btnSubmitNewRoom"  class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" >Submit</button>
     </div>
 
     <div id="new-widget-dialog" class="dialog overflow-y-auto bg-opacity-40">
@@ -80,9 +80,9 @@
                 <img src="../../resources/gif-security-camera-widget.gif" alt="Security Camera" style="width:300px;height: fit-content;" class="">
             </div>
         </div>
-        <button onclick="submitNewWidget()" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded float-right" >Add</button>
+        <button id="btnSubmitNewWidget" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded float-right" >Add</button>
     </div>
 
-    <script src="homepage.js"></script>
+    <script type="module" src="homepage.js"></script>
 </body>
 </html>

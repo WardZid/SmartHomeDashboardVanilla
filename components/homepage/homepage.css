@@ -75,7 +75,7 @@ button{
 .button-list button:hover{
     background: linear-gradient(to left, #EEEEEE, #42B6E9);
 }
-#new-room{
+#btnNewRoom{
     background-color: #42B6E9;
     text-align: center;
     padding: 0%;

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,15 +8,18 @@
     <title>Sign In!</title>
     <link rel="stylesheet" href="log-in.css">
 </head>
+
 <body style=" background-image: url('../../resources/bg-log-in.jpg');">
     <div class="main">
         <div class="overlay">
             <div class="hello-text">Welcome Home!</div>
-            <input type="text" class="login-textbox" placeholder="Username">
-            <input type="password" class="login-textbox" placeholder="Password">
-            <button class="login-button" onclick="signIn()">Sign In</button>
+            <input id="txtUsername" type="text" class="login-textbox" placeholder="Username">
+            <input id="txtPassword" type="password" class="login-textbox" placeholder="Password">
+            <button id="btnTogglePassword" class="password-toggle-btn"><img src="../../resources/eye-icon.svg" alt="Toggle Password"></button>
+            <button id="btnSignIn"  class="login-button">Sign In</button>
         </div>
     </div>
-    <script src="log-in.js"></script>
+    <script type="module" src="log-in.js"></script>
 </body>
+
 </html>
