@@ -1,4 +1,13 @@
-html, body {
+/* 
+    orange: #F05622 
+    dark blue: #042A35
+    light blue: #42B6E9
+    off-white: #EEEEEE
+*/
+
+
+html,
+body {
     height: 100%;
     margin: 0;
     padding: 0;
@@ -7,7 +16,7 @@ html, body {
 }
 
 body {
-   
+
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -19,6 +28,7 @@ body {
     margin: 0;
     padding: 0;
 }
+
 .overlay {
     position: absolute;
     top: 0;
@@ -27,8 +37,10 @@ body {
     width: 50%;
     background-color: #EEEEEE;
     opacity: 0.97;
-    z-index: 1; /* Ensure the overlay is above the background image */
-    box-shadow: 5px 0 10px rgba(0, 0, 0, 1); /* Add a bit of shadow to the right side */
+    z-index: 1;
+    /* Ensure the overlay is above the background image */
+    box-shadow: 5px 0 10px rgba(0, 0, 0, 1);
+    /* Add a bit of shadow to the right side */
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -51,9 +63,12 @@ body {
     font-weight: bold;
     margin-bottom: 20px;
 }
+
 .login-button {
-    font-family: 'Helvetica', sans-serif; /* Use Helvetica or a suitable fallback */
-    background-color: #42B6E9; /* Green color, you can change this */
+    font-family: 'Helvetica', sans-serif;
+    /* Use Helvetica or a suitable fallback */
+    background-color: #42B6E9;
+    /* Green color, you can change this */
     color: white;
     padding: 10px 20px;
     border: none;
@@ -61,6 +76,7 @@ body {
     cursor: pointer;
     font-size: 16px;
 }
+
 .password-toggle-btn {
     position: absolute;
     top: 50%;

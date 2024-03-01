@@ -1,5 +1,13 @@
+/* 
+    orange: #F05622 
+    dark blue: #042A35
+    light blue: #42B6E9
+    off-white: #EEEEEE
+*/
 
-html, body {
+
+html,
+body {
     height: 100%;
     margin: 0;
     padding: 0;
@@ -7,18 +15,21 @@ html, body {
     font-weight: bold;
     color: #042A35;
 }
-body{
+
+body {
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
 }
-button{
+
+button {
     border: 0px;
     cursor: pointer;
     font-family: 'Helvetica', sans-serif;
     color: #042A35;
     background-color: transparent;
 }
+
 .main {
     width: 100%;
     height: 100%;
@@ -32,24 +43,27 @@ button{
     display: flex;
 }
 
-.side-menu{
+.side-menu {
     height: 100%;
     flex: 1;
     display: flex;
     flex-direction: column;
 }
-.side-menu button{
+
+.side-menu button {
     width: 100%;
     height: 40px;
     text-align: left;
     padding-left: 20px;
-    font-size:16px;
+    font-size: 16px;
 }
-.profile{
+
+.profile {
     display: flex;
     align-items: center;
     justify-content: center;
 }
+
 .profile-picture {
     border-radius: 50%;
     overflow: hidden;
@@ -57,47 +71,63 @@ button{
     margin: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
-.user-name{
+
+.user-name {
     width: 100%;
     height: 100%;
     display: grid;
     place-items: center;
     cursor: default;
 }
-.category-list{
+
+.room-list {
     margin: 0;
     padding: 0;
     flex: 1;
-    
+
     display: grid;
     place-items: center;
+
+    overflow-y: auto;
+    scrollbar-width: thin;
+    scrollbar-color: #042A35;
 }
-.button-list button:hover{
-    background: linear-gradient(to left, #EEEEEE, #42B6E9);
+
+.room-list button:hover {
+    color: #042A35;
 }
-#btnNewRoom{
+.button-list{
+    
+}
+#btnNewRoom {
+    width: 90%;
     background-color: #42B6E9;
     text-align: center;
     padding: 0%;
     border-radius: 10px;
-    margin-right: 10px;
-    margin-left: 10px;
     margin-top: 10px;
     color: #EEEEEE;
     font-weight: bold;
     font-size: 20px;
 }
-.bottom{
+#btnNewRoom:hover{
+    background-color:#042A35;
+}
+
+.bottom {
 
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+
+    align-items: center;
 }
-.bottom button:hover{
-    background: linear-gradient(to left, #b3c5cc, #42B6E9);
-    border-radius: 5px;
+
+
+#btnSignOut:hover{
+    color: #F05622 ;
 }
-.widget-grid{
+.widget-grid {
     width: 85%;
     display: flex;
     flex-direction: row;
@@ -108,7 +138,8 @@ button{
     gap: 10px;
     padding: 1%;
 }
-.widget{
+
+.widget {
     min-height: 10%;
     min-width: 10%;
     padding: 1%;
@@ -117,6 +148,7 @@ button{
     box-shadow: 0 0 10px rgba(0, 0, 0, 5);
     user-select: none;
 }
+
 .floating-btn {
     position: absolute;
     /* top: calc(100% - 50px);
@@ -124,25 +156,29 @@ button{
     bottom: 50px;
     right: 50px;
 }
+
 .hover-button {
     display: inline-block;
     padding: 10px 20px;
-    background-color: #3498db;
+    background-color: #42B6E9;
     color: #fff;
     text-decoration: none;
     border-radius: 5px;
     transition: background-color 0.3s ease;
-  }
-
-  /* Change button background on hover */
-  .hover-button:hover {
-    background-color: #2980b9;
-  }
-
-  video {
-    width: 100%; /* Make the video fill the container width */
-    height: auto; /* Maintain the aspect ratio */
 }
+
+/* Change button background on hover */
+.hover-button:hover {
+    background-color: #042A35;
+}
+
+video {
+    width: 100%;
+    /* Make the video fill the container width */
+    height: auto;
+    /* Maintain the aspect ratio */
+}
+
 .overlay {
     display: none;
     position: fixed;

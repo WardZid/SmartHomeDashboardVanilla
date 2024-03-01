@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,6 +9,7 @@
     <link rel="stylesheet" href="homepage.css">
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
+
 <body style="background-image: url('../../resources/bg-homepage.jpg');">
 
     <div id="main" class="main" style="display: flex;">
@@ -15,25 +17,23 @@
             <div class="profile">
                 <img class="profile-picture" src="../../resources/pfp-placeholder.jpg">
                 <div id="lblFullName" class="user-name">John Doe</div>
-                
+
             </div>
-            <div class="category-list">
-                <div class="button-list">
-                    <button>kitchen</button>
-                    <button>Living Room</button>
-                    <button>Cameras</button>
-                    <button id="btnNewRoom">+</button>
+            <div class="room-list">
+                <div id="divRoomButtons" class="button-list">
+                    <!-- Rooms will be dynamically inserted here ya habibi-->
                 </div>
-            </div> 
+            </div>
             <div class="bottom">
-                <button>Settings</button>
+                <button id="btnNewRoom">+</button>
+                <button>Options</button>
                 <button id="btnSignOut">Sign Out</button>
             </div>
         </div>
         <div class="widget-grid">
             <div class="widget" style="width: fit-content; height: fit-content;">
                 <h2 id="time-header">00:00</h2>
-                <h2>☁︎  ⁺₊ 8 C˚</h2>
+                <h2>☁︎ ⁺₊ 8 C˚</h2>
                 <h5 id="date-header">Wednesday, 31st January 2024</h5>
             </div>
             <div class="widget" style="width: 100px; height: 100px;">
@@ -46,29 +46,31 @@
                     <source src="../../resources/vid-frontdoor-camera.mp4" type="video/mp4">
                     Your browser does not support the video tag.
                 </video>
-                <div id="btnToggleMute" class="mute-button"  style="cursor: pointer;">
+                <div id="btnToggleMute" class="mute-button" style="cursor: pointer;">
                     🔇 Mute
                 </div>
             </div>
         </div>
-        <button id="btnNewWidgetDialog" class="floating-btn bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full shadow-lg">+</button>
+        <button id="btnNewWidgetDialog"
+            class="floating-btn bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full shadow-lg">+</button>
     </div>
 
 
-    
-    <div id="overlay"  class="overlay"></div>
+
+    <div id="overlay" class="overlay"></div>
 
     <div id="new-room-dialog" class="dialog">
         <h2 class="text-lg font-semibold mb-4">Name of new room or category:</h2>
         <input type="text" id="room-name-input" class="border rounded px-3 py-2 mb-2">
-        <button id="btnSubmitNewRoom"  class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" >Submit</button>
+        <button id="btnSubmitNewRoom"
+            class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Submit</button>
     </div>
 
     <div id="new-widget-dialog" class="dialog overflow-y-auto bg-opacity-40">
         <h2 class="text-lg font-semibold mb-4">Choose a new widget</h2>
         <div class="widget-grid p-3 w-full">
             <div class="widget" style="width: fit-content; height: 100px;">
-                <h2>15:40 ☁︎  ⁺₊ 8 C˚</h2>
+                <h2>15:40 ☁︎ ⁺₊ 8 C˚</h2>
                 <h5>Wednesday, 31st January 2024</h5>
             </div>
             <div class="widget" style="width: fit-content; height: 100px;">
@@ -77,12 +79,15 @@
             </div>
             <div class="widget" style="width: 300 ;height: 300px;">
                 <h3>Camera Widget</h3>
-                <img src="../../resources/gif-security-camera-widget.gif" alt="Security Camera" style="width:300px;height: fit-content;" class="">
+                <img src="../../resources/gif-security-camera-widget.gif" alt="Security Camera"
+                    style="width:300px;height: fit-content;" class="">
             </div>
         </div>
-        <button id="btnSubmitNewWidget" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded float-right" >Add</button>
+        <button id="btnSubmitNewWidget"
+            class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded float-right">Add</button>
     </div>
 
     <script type="module" src="homepage.js"></script>
 </body>
+
 </html>

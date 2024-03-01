@@ -1,11 +1,15 @@
 import * as dbAPI from "../../controllers/databaseAPI.js";
 import * as lsAPI from "../../controllers/localStorage.js";
 import * as user from "../../models/user.js";
+import * as room from "../../models/room.js";
+import * as widget from "../../models/widget.js";
 
-const lblFullName = document.getElementById("lblFullName");
+//*******elements */
 const vidFrontDoor = document.getElementById("front-door-cam");
 const muteButton = document.querySelector(".mute-button");
 const dialogOverlay = document.getElementById("overlay");
+
+const lblFullName = document.getElementById("lblFullName");
 const btnNewRoom = document.getElementById("btnNewRoom");
 const btnSignOut = document.getElementById("btnSignOut");
 const btnToggleMute = document.getElementById("btnToggleMute");
@@ -38,7 +42,18 @@ function loadPage() {
   user
     .getUserInfo()
     .then((userInfo) => {
-        lblFullName.textContent = userInfo.first_name + " " + userInfo.last_name;
+      lblFullName.textContent = userInfo.first_name + " " + userInfo.last_name;
+    })
+    .catch((error) => {
+      console.error("Error:", error);
+    });
+
+  room
+    .getRooms()
+    .then((roomsArray) => {
+      roomsArray.forEach(function (room) {
+        addRoomButton(room.room_name,room._id);
+      });
     })
     .catch((error) => {
       console.error("Error:", error);
@@ -97,11 +112,27 @@ function closeAllDialogs() {
   dialogOverlay.style.display = "none";
 }
 
+function addRoomButton(roomName, roomId) {
+  var divRoomButtons = document.getElementById("divRoomButtons");
+  var button = document.createElement("button");
+  button.textContent = roomName;
+  button.id = roomId;
+  button.setAttribute("data-room-id", roomId); // Set custom attribute for room id
+  divRoomButtons.appendChild(button);
+}
+
 function submitNewRoom() {
   const roomNameInput = document.getElementById("room-name-input");
-  const userInput = roomNameInput.value;
+  const roomName = roomNameInput.value;
 
-  alert("You entered: " + userInput);
+  room
+    .addRoom(roomName)
+    .then((response) => {
+      addRoomButton(roomName,response.insertedId)
+    })
+    .catch((error) => {
+      console.error("Error:", error);
+    });
 
   roomNameInput.value = "";
   closeDialog("new-room-dialog");
@@ -111,5 +142,6 @@ function submitNewWidget() {
   closeDialog("new-widget-dialog");
 }
 
+function loadRoom(roomId) {}
 loadPage();
 startClock();
