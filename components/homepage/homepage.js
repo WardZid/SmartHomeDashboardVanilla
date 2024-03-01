@@ -39,6 +39,8 @@ function signOut() {
 }
 
 function loadPage() {
+  if (user.isLoggedIn() == false) signOut();
+
   user
     .getUserInfo()
     .then((userInfo) => {
@@ -52,7 +54,7 @@ function loadPage() {
     .getRooms()
     .then((roomsArray) => {
       roomsArray.forEach(function (room) {
-        addRoomButton(room.room_name,room._id);
+        addRoomButton(room.room_name, room._id);
       });
     })
     .catch((error) => {
@@ -128,7 +130,7 @@ function submitNewRoom() {
   room
     .addRoom(roomName)
     .then((response) => {
-      addRoomButton(roomName,response.insertedId)
+      addRoomButton(roomName, response.insertedId);
     })
     .catch((error) => {
       console.error("Error:", error);
