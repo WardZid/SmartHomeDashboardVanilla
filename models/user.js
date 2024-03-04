@@ -10,6 +10,25 @@ export async function getUserInfo() {
   return userInfo;
 }
 
-export function isLoggedIn(){
-    return lsAPI.isCookieExpired("accessToken") == false;
+export async function isLoggedIn() {
+  if (lsAPI.isCookieExpired("refreshToken")) {
+    signOut();
+    return false;
+  }
+
+  if (lsAPI.isCookieExpired("accessToken")) {
+    await dbAPI.refreshAccessToken();
+  }
+
+  //check again after refreshing access token
+  if (lsAPI.isCookieExpired("accessToken")){
+    signOut();
+    return false;
+  }
+  
+  return true;
+}
+
+export function signOut() {
+  lsAPI.clear();
 }

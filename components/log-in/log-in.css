@@ -11,7 +11,7 @@ body {
     height: 100%;
     margin: 0;
     padding: 0;
-    font-family: 'Helvetica', sans-serif;
+    font-family: 'Century Gothic';
     color: #042A35;
 }
 
@@ -22,6 +22,19 @@ body {
     background-repeat: no-repeat;
 }
 
+input{
+    width: 40%;
+    margin-bottom: 10px;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    opacity: 1;
+    transition: box-shadow 0.1s ease;
+}
+input:hover{
+    box-shadow: 0 0 3px rgba(0, 0, 0, 3);
+}
 .main {
     width: 100%;
     height: 100%;
@@ -48,16 +61,6 @@ body {
     text-align: center;
 }
 
-.login-textbox {
-    width: 40%;
-    margin-bottom: 10px;
-    padding: 8px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    box-sizing: border-box;
-    opacity: 1;
-}
-
 .hello-text {
     font-size: 200%;
     font-weight: bold;
@@ -65,16 +68,18 @@ body {
 }
 
 .login-button {
-    font-family: 'Helvetica', sans-serif;
-    /* Use Helvetica or a suitable fallback */
     background-color: #42B6E9;
-    /* Green color, you can change this */
-    color: white;
+    color: #EEEEEE;
     padding: 10px 20px;
     border: none;
     border-radius: 4px;
     cursor: pointer;
     font-size: 16px;
+}
+
+.login-button:hover{
+    background-color: #042A35;
+    color: #EEEEEE;
 }
 
 .password-toggle-btn {

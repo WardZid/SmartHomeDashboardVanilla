@@ -62,6 +62,6 @@ function isValidInput(inputStr) {
 
 
 //skip login if user is still in session
-if(user.isLoggedIn()){
+if(await user.isLoggedIn()){
   window.location.href = "../homepage/homepage.html";
 }

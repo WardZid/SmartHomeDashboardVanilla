@@ -11,7 +11,7 @@ body {
     height: 100%;
     margin: 0;
     padding: 0;
-    font-family: 'Helvetica', sans-serif;
+    font-family: 'Century Gothic';
     font-weight: bold;
     color: #042A35;
 }
@@ -24,10 +24,13 @@ body {
 
 button {
     border: 0px;
+    border-radius: 4px;
     cursor: pointer;
-    font-family: 'Helvetica', sans-serif;
     color: #042A35;
     background-color: transparent;
+
+    transition: background-color 0.3s ease;
+    transition: color 0.1s ease;
 }
 
 .main {
@@ -48,6 +51,10 @@ button {
     flex: 1;
     display: flex;
     flex-direction: column;
+    user-select: none;
+
+    border-right: #42B6E9;
+    border-right-style: solid;
 }
 
 .side-menu button {
@@ -65,7 +72,7 @@ button {
 }
 
 .profile-picture {
-    border-radius: 50%;
+    border-radius: 5px;
     overflow: hidden;
     width: 40%;
     margin: 10px;
@@ -85,34 +92,92 @@ button {
     padding: 0;
     flex: 1;
 
-    display: grid;
-    place-items: center;
+    display: flex;
+    flex-direction: column;
 
     overflow-y: auto;
     scrollbar-width: thin;
-    scrollbar-color: #042A35;
+    scroll-behavior: smooth;
 }
 
-.room-list button:hover {
+.room-list:hover {
     color: #042A35;
 }
-.button-list{
-    
+
+.room-item {
+    width: 90%;
+    padding-top: 4px;
+    padding-bottom: 4px;
+    padding-left: 8px;
+    padding-right: 8px;
+
+    cursor: pointer;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.room-item:hover {
+    background-color: #042A35;
+    color: #EEEEEE;
+
+}
+
+.more-icon {
+    width: 100%;
+    height: auto;
+    max-width: 20px;
+    cursor: pointer;
+
+}
+
+.more-icon:hover {
+    background-color: #EEEEEE;
+    color: #042A35;
+}
+/* 
+.more-menu {
+    display: none;
+    position: absolute;
+    list-style-type: none;
+    background: white;
+    border: 1px solid #ccc;
+    padding: 5px 0;
+    z-index: 1000; 
+}
+
+.more-item {
+    position: relative;
+}
+  */
+
+  
+.delete-icon {
+    width: 100%;
+    height: auto;
+    max-width: 20px;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+.delete-icon:hover {
+    background-color: #EEEEEE;
+    color: #042A35;
 }
 #btnNewRoom {
     width: 90%;
     background-color: #42B6E9;
     text-align: center;
     padding: 0%;
-    border-radius: 10px;
     margin-top: 10px;
     color: #EEEEEE;
-    font-weight: bold;
-    font-size: 20px;
 }
-#btnNewRoom:hover{
-    background-color:#042A35;
+
+#btnNewRoom:hover {
+    background-color: #042A35;
 }
+
 
 .bottom {
 
@@ -124,9 +189,10 @@ button {
 }
 
 
-#btnSignOut:hover{
-    color: #F05622 ;
+#btnSignOut:hover {
+    color: #F05622;
 }
+
 .widget-grid {
     width: 85%;
     display: flex;
@@ -144,8 +210,8 @@ button {
     min-width: 10%;
     padding: 1%;
     background-color: #fbfbfb;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 5);
+    border-radius: 4px;
+    box-shadow: 0 0 3px rgba(0, 0, 0, 3);
     user-select: none;
 }
 
@@ -163,7 +229,7 @@ button {
     background-color: #42B6E9;
     color: #fff;
     text-decoration: none;
-    border-radius: 5px;
+    border-radius: 4px;
     transition: background-color 0.3s ease;
 }
 
@@ -201,6 +267,6 @@ video {
     background-color: #EEEEEE;
     opacity: 0.97;
     padding: 20px;
-    border-radius: 8px;
+    border-radius: 4px;
     z-index: 1001;
 }

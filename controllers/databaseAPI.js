@@ -1,15 +1,18 @@
 import * as lsAPI from "./localStorage.js";
+import * as user from "../models/user.js";
 
 const loginEndpoint =
   "https://realm.mongodb.com/api/client/v2.0/app/data-rtanz/auth/providers/local-userpass/login";
+const refreshTokenEndpoint =
+  "https://services.cloud.mongodb.com/api/client/v2.0/auth/session";
 const dataEndpoint =
   "https://eu-central-1.aws.data.mongodb-api.com/app/data-rtanz/endpoint/data/v1/action";
 
 const databaseName = "SmartHomeDatabase";
 const dataSourceName = "Cluster0";
-const accessTokenExpiry = 3600; // Example: 1 hour
-const refreshTokenExpiry = 2592000; // Example: 30 days
-const userIDExpiry = 2592000; // Example: 30 days
+const accessTokenExpiry = 1800; // 30 mins
+const refreshTokenExpiry = 5184000; // 60 days
+const userIDExpiry = 5184000; // 60 days
 
 function buildRequest(collectionName, additionalData) {
   const accessToken = lsAPI.getAccessToken();
@@ -33,59 +36,71 @@ function buildRequest(collectionName, additionalData) {
   return request;
 }
 
-async function findOne(collectionName, requestData) {
+export async function refreshAccessToken() {
+  const refreshToken = lsAPI.getRefreshToken();
+  const request = {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${refreshToken}`,
+    },
+  };
   try {
-    const response = await fetch(
-      dataEndpoint + "/findOne",
-      buildRequest(collectionName, requestData)
-    );
-
+    const response = await fetch(refreshTokenEndpoint, request);
     if (!response.ok) {
+      user.signOut();
       throw new Error(`HTTP error! Status: ${response.status}`);
     }
 
     const responseData = await response.json();
-    return responseData.document;
+    if (responseData.access_token) {
+      lsAPI.setAccessToken(responseData.access_token, accessTokenExpiry);
+    }
   } catch (error) {
     console.error("Error:", error);
     return null;
   }
+}
+async function send(endpoint, request) {
+  if (await user.isLoggedIn()) {
+    try {
+      const response = await fetch(endpoint, request);
+
+      if (!response.ok) {
+        if (response.status == 401) {
+          user.signOut();
+        }
+        throw new Error(`HTTP error! Status: ${response.status}`);
+      }
+
+      const responseData = await response.json();
+      return responseData;
+    } catch (error) {
+      console.error("Error:", error);
+      return null;
+    }
+  }
+}
+async function findOne(collectionName, requestData) {
+  const endpoint = dataEndpoint + "/findOne";
+  const request = buildRequest(collectionName, requestData);
+
+  const response = await send(endpoint, request);
+  return response.document;
 }
 async function findMany(collectionName, requestData) {
-  try {
-    const response = await fetch(
-      dataEndpoint + "/find",
-      buildRequest(collectionName, requestData)
-    );
+  const endpoint = dataEndpoint + "/find";
+  const request = buildRequest(collectionName, requestData);
 
-    if (!response.ok) {
-      throw new Error(`HTTP error! Status: ${response.status}`);
-    }
-
-    const responseData = await response.json();
-    return responseData.documents;
-  } catch (error) {
-    console.error("Error:", error);
-    return null;
-  }
+  const response = await send(endpoint, request);
+  return response.documents;
 }
 async function insertOne(collectionName, requestData) {
-  try {
-    const response = await fetch(
-      dataEndpoint + "/insertOne",
-      buildRequest(collectionName, requestData)
-    );
+  const endpoint = dataEndpoint + "/insertOne";
+  const request = buildRequest(collectionName, requestData);
 
-    if (!response.ok) {
-      throw new Error(`HTTP error! Status: ${response.status}`);
-    }
-
-    const responseData = await response.json();
-    return responseData;
-  } catch (error) {
-    console.error("Error:", error);
-    return null;
-  }
+  const response = await send(endpoint, request);
+  return response;
 }
 
 export async function login(email, password) {
