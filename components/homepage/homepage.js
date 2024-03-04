@@ -10,6 +10,7 @@ const muteButton = document.querySelector(".mute-button");
 const dialogOverlay = document.getElementById("overlay");
 
 const lblFullName = document.getElementById("lblFullName");
+const divRoomButtons = document.getElementById("divRoomButtons");
 const btnNewRoom = document.getElementById("btnNewRoom");
 const btnSignOut = document.getElementById("btnSignOut");
 const btnToggleMute = document.getElementById("btnToggleMute");
@@ -74,16 +75,18 @@ async function loadPage() {
 }
 
 function addRoomButton(roomName, roomId) {
-  var divRoomButtons = document.getElementById("divRoomButtons");
+  document.getElementById("roomListPlaceHolder").style.display = "none";
+
   var roomDiv = document.createElement("div");
   var roomHeader = document.createElement("h3"); // Create h3 tag for room name
   // var moreIcon = document.createElement("img"); // Create img tag for "more" icon
   var deleteIcon = document.createElement("img"); // Create img tag for "more" icon
 
-  roomHeader.textContent = roomName; // Set room name text
-  roomHeader.id = roomId;
-  roomHeader.className = "room-item";
-  roomHeader.setAttribute("oid", roomId); // Set custom attribute for room id
+  roomDiv.id = roomId;
+  roomDiv.setAttribute("oid", roomId);
+  roomDiv.className = "room-item";
+
+  roomHeader.textContent = roomName;
 
   // moreIcon.src = "../../resources/more.png"; // Set path to your more icon image
   // moreIcon.className = "more-icon"; // Add class for styling
@@ -99,15 +102,37 @@ function addRoomButton(roomName, roomId) {
     deleteRoom(roomId); // Function to toggle list visibility
   });
 
+  // Event listener to show delete icon on hover
+  roomDiv.addEventListener("mouseover", function () {
+    deleteIcon.style.visibility = "visible";
+  });
+
+  // Event listener to hide delete icon when not hovered
+  roomDiv.addEventListener("mouseout", function () {
+    deleteIcon.style.visibility = "hidden";
+  });
+
   // roomHeader.appendChild(moreIcon);
-  roomHeader.appendChild(deleteIcon);
   roomDiv.appendChild(roomHeader);
+  roomDiv.appendChild(deleteIcon);
+
   divRoomButtons.appendChild(roomDiv);
 
   // Assuming you have a function called loadRoom to load room details
-  roomHeader.addEventListener("click", function () {
+  roomDiv.addEventListener("click", function () {
     loadRoom(roomId);
   });
+}
+
+function removeRoomButton(roomId) {
+  var roomToRemove = document.getElementById(roomId);
+  if (roomToRemove) {
+    divRoomButtons.removeChild(roomToRemove);
+  }
+
+  if (divRoomButtons.childElementCount == 1) {
+    document.getElementById("roomListPlaceHolder").style.display = "block";
+  }
 }
 
 function toggleRoomList(roomId) {
@@ -145,7 +170,16 @@ function submitNewRoom() {
   }
   closeDialog("new-room-dialog");
 }
-function deleteRoom(roomId) {}
+function deleteRoom(roomId) {
+  room
+    .deleteRoom(roomId)
+    .then((response) => {
+      removeRoomButton(roomId);
+    })
+    .catch((error) => {
+      console.error("Error:", error);
+    });
+}
 
 function startClock() {
   setInterval(updateClock, 1000);

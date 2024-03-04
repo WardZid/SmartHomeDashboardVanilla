@@ -14,28 +14,6 @@ const accessTokenExpiry = 1800; // 30 mins
 const refreshTokenExpiry = 5184000; // 60 days
 const userIDExpiry = 5184000; // 60 days
 
-function buildRequest(collectionName, additionalData) {
-  const accessToken = lsAPI.getAccessToken();
-
-  const requestData = {
-    collection: collectionName,
-    database: databaseName,
-    dataSource: dataSourceName,
-    ...additionalData,
-  };
-
-  const request = {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      Accept: "application/json",
-      Authorization: `Bearer ${accessToken}`,
-    },
-    body: JSON.stringify(requestData),
-  };
-  return request;
-}
-
 export async function refreshAccessToken() {
   const refreshToken = lsAPI.getRefreshToken();
   const request = {
@@ -61,6 +39,29 @@ export async function refreshAccessToken() {
     return null;
   }
 }
+
+function buildRequest(collectionName, additionalData) {
+  const accessToken = lsAPI.getAccessToken();
+
+  const requestData = {
+    collection: collectionName,
+    database: databaseName,
+    dataSource: dataSourceName,
+    ...additionalData,
+  };
+
+  const request = {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Accept: "application/json",
+      Authorization: `Bearer ${accessToken}`,
+    },
+    body: JSON.stringify(requestData),
+  };
+  return request;
+}
+
 async function send(endpoint, request) {
   if (await user.isLoggedIn()) {
     try {
@@ -97,6 +98,14 @@ async function findMany(collectionName, requestData) {
 }
 async function insertOne(collectionName, requestData) {
   const endpoint = dataEndpoint + "/insertOne";
+  const request = buildRequest(collectionName, requestData);
+
+  const response = await send(endpoint, request);
+  return response;
+}
+
+async function deleteOne(collectionName, requestData) {
+  const endpoint = dataEndpoint + "/deleteOne";
   const request = buildRequest(collectionName, requestData);
 
   const response = await send(endpoint, request);
@@ -153,6 +162,15 @@ export async function addNewRoom(roomName) {
     },
   };
   return await insertOne("rooms", requestData);
+}
+
+export async function deleteRoom(roomId){
+  const requestData = {
+    filter: {
+      _id: { $oid: roomId },
+    },
+  };
+  return await deleteOne("rooms", requestData);
 }
 
 export async function fetchRooms() {
