@@ -72,6 +72,9 @@ async function loadPage() {
   room
     .getRooms()
     .then((roomsArray) => {
+      if(roomsArray.length > 0){
+        loadRoom(roomsArray[0]._id);
+      }
       roomsArray.forEach(function (room) {
         addRoomButton(room.room_name, room._id);
       });
@@ -79,7 +82,8 @@ async function loadPage() {
     .catch((error) => {
       console.error("Error:", error);
     });
-  createWidgetTable();
+
+  //createWidgetTable();
 }
 
 function clearWidgetTable() {
