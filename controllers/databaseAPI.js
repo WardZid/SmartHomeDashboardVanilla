@@ -96,8 +96,34 @@ async function findMany(collectionName, requestData) {
   const response = await send(endpoint, request);
   return response.documents;
 }
+async function aggregate(collectionName, requestData) {
+  const endpoint = dataEndpoint + "/aggregate";
+  const request = buildRequest(collectionName, requestData);
+
+  const response = await send(endpoint, request);
+  return response.documents;
+}
+
 async function insertOne(collectionName, requestData) {
   const endpoint = dataEndpoint + "/insertOne";
+  const request = buildRequest(collectionName, requestData);
+
+  const response = await send(endpoint, request);
+  return response;
+}
+async function updateOne(collectionName, updateData, filterId) {
+  const endpoint = dataEndpoint + "/updateOne";
+
+  const requestData = {
+    filter: {
+      _id: { $oid: filterId },
+    },
+    update: {
+      $set: {
+        ...updateData
+      },
+    },
+  };
   const request = buildRequest(collectionName, requestData);
 
   const response = await send(endpoint, request);
@@ -164,7 +190,7 @@ export async function addNewRoom(roomName) {
   return await insertOne("rooms", requestData);
 }
 
-export async function deleteRoom(roomId){
+export async function deleteRoom(roomId) {
   const requestData = {
     filter: {
       _id: { $oid: roomId },
@@ -173,7 +199,7 @@ export async function deleteRoom(roomId){
   return await deleteOne("rooms", requestData);
 }
 
-export async function fetchRooms() {
+export async function getRooms() {
   const userID = lsAPI.getUserID();
   const requestData = {
     filter: {
@@ -181,4 +207,37 @@ export async function fetchRooms() {
     },
   };
   return await findMany("rooms", requestData);
+}
+
+export async function getWidgets(roomId) {
+  const requestData = {
+    pipeline: [
+      {
+        $match: {
+          room_id: { $oid: roomId },
+        },
+      },
+      {
+        $lookup: {
+          from: "devices",
+          localField: "device_id",
+          foreignField: "_id",
+          as: "device",
+        },
+      },
+      {
+        $unwind: "$device",
+      },
+    ],
+  };
+
+  return await aggregate("widgets", requestData);
+}
+
+export async function updateWidgetLocation(widgetId, row, col) {
+  const updateData ={
+    row: row,
+    col: col,
+  }
+  return await updateOne("widgets",updateData,widgetId);
 }
